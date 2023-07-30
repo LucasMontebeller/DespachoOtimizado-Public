@@ -1,0 +1,78 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+@model HomeViewModel
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Home Page</title>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCiaFcSkiDfjEBCTwGtLjGkR86G57RWJJg"></script>
+    <style>
+        #map {
+            height: 400px;
+        }
+
+        .alert-danger {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="row">
+        <div class="col-md-6">
+            <form method="post" enctype="multipart/form-data" asp-action="Process">
+                <div class="mb-3">
+                    <label for="excelFile" class="form-label">Select an Excel file (.xls)</label>
+                    <input class="form-control" type="file" id="excelFile" accept=".xls" name="excelFile">
+                </div>
+                <div id="error-message" class="alert alert-danger" role="alert"></div>
+                <div class="pt-1 mb-4">
+                    <button class="btn btn-primary btn-lg btn-block" type="submit" onclick="return validateFile()" >Send</button>
+                </div>
+                @if (!ViewData.ModelState.IsValid)
+                {
+                    var pythonError = ViewData.ModelState["PythonResponse"]?.Errors.FirstOrDefault()?.ErrorMessage;
+                    if (pythonError is not null)
+                    {
+                        <div class="alert alert-danger" role="alert">
+                            @pythonError
+                        </div>
+                    }
+                }
+            </form>
+        </div>
+        <div class="col-md-6">
+            <div id="map"></div>
+        </div>
+    </div>
+
+    <script>
+        function initMap() {
+            var myLatLng = { lat: -23.5505, lng: -46.6333 };
+            var mapOptions = {
+                zoom: 12,
+                center: myLatLng
+            };
+            var map = new google.maps.Map(document.getElementById('map'), mapOptions);
+        }
+
+        initMap();
+
+        function validateFile() {
+            var fileInput = document.getElementById("excelFile");
+            var errorMessage = document.getElementById("error-message");
+
+            if (fileInput.value === '') {
+                errorMessage.textContent = 'A file must be attached';
+                errorMessage.style.display = 'block';
+                return false;
+            } else {
+                errorMessage.textContent = '';
+                errorMessage.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>

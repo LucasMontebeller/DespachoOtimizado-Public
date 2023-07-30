@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <ProjectReference Include="..\DespachoOtimizado.Domain\DespachoOtimizado.Domain.csproj" />
+    <ProjectReference Include="..\DespachoOtimizado.Application\DespachoOtimizado.Application.csproj" />
+    <ProjectReference Include="..\DespachoOtimizado.Infra.Data\DespachoOtimizado.Infra.Data.csproj" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+</Project>

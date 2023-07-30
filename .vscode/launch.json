@@ -1,0 +1,24 @@
+{
+    "configurations": [
+    {
+        "name": ".NET Core Launch (web)",
+        "type": "coreclr",
+        "request": "launch",
+        "preLaunchTask": "build",
+        "program": "${workspaceFolder}/DespachoOtimizado.WebUI/bin/Debug/net7.0/DespachoOtimizado.WebUI.dll",
+        "args": [],
+        "cwd": "${workspaceFolder}/DespachoOtimizado.WebUI",
+        "stopAtEntry": false,
+        "serverReadyAction": {
+            "action": "openExternally",
+            "pattern": "\\bNow listening on:\\s+(https?://\\S+)"
+        },
+        "env": {
+            "ASPNETCORE_ENVIRONMENT": "Development"
+        },
+        "sourceFileMap": {
+            "/Views": "${workspaceFolder}/Views"
+        }
+    }
+    ]
+}
